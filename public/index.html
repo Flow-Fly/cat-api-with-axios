@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+			integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<link rel="stylesheet" href="css/style.css" />
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script type="module" src="script/index.js"></script>
+		<title>Cat app</title>
+	</head>
+	<body>
+		<main>
+			<h1>Cat crud!</h1>
+			<div class="button container">
+				<button id="get-cats">Get all the 😼</button>
+				<button id="create-cat">Create a 😼</button>
+			</div>
+
+			<div class="container main-content">
+				<div class="cat container"></div>
+
+				<div class="form container">
+					<form class="hidden">
+						<p class="error"></p>
+						<div>
+							<label for="name">Cat name:</label>
+							<input type="text" id="name" />
+						</div>
+						<div>
+							<label for="url">Cat picture url:</label>
+							<input type="text" id="url" />
+						</div>
+
+						<button id="submit">Create 😼</button>
+					</form>
+				</div>
+			</div>
+		</main>
+
+		<template id="cat-template">
+			<div class="card container">
+				<h3></h3>
+				<picture class="container"><img src="" alt="" /></picture>
+				<div class="controls">
+					<div class="edit">
+						<i class="fa-solid fa-pencil"></i>
+					</div>
+					<div class="delete">
+						<i class="fa-solid fa-circle-minus"></i>
+					</div>
+				</div>
+			</div>
+		</template>
+	</body>
+</html>

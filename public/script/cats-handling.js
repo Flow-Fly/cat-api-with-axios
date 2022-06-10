@@ -23,21 +23,27 @@ export async function getCats() {
 
 export async function handleSubmit(e) {
 	e.preventDefault()
-	const cat = {
-		name: nameInput.value,
-		url: urlInput.value,
-	}
-	if (cat.name === "" || cat.url === "") {
+	// const cat = {
+	// 	name: nameInput.value,
+	// 	url: urlInput.value,
+	// }
+	const fd = new FormData()
+	// console.log(urlInput)
+	if (nameInput.value === "") {
 		errorMessage.textContent = "Please provide some values !"
 		return
 	}
+	fd.append("name", nameInput.value)
+
+	fd.append("url", urlInput.files[0])
+
 	if (e.target.textContent.includes("Create")) {
-		const { data } = await axios.post(baseUrl, cat)
+		const { data } = await axios.post(baseUrl, fd)
 		// console.log(data)
 		createTemplateAndAppend(data)
 	} else {
 		const id = e.target.dataset.id
-		await axios.patch(`${baseUrl}/${id}`, cat)
+		await axios.patch(`${baseUrl}/${id}`, fd)
 		getCats()
 		e.target.textContent = "Create 😼"
 	}

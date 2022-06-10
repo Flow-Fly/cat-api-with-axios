@@ -28,15 +28,20 @@
 				<div class="cat container"></div>
 
 				<div class="form container">
-					<form class="hidden">
+					<form
+						method="post"
+						action="/cats"
+						class="hidden"
+						enctype="multipart/form-data"
+					>
 						<p class="error"></p>
 						<div>
 							<label for="name">Cat name:</label>
-							<input type="text" id="name" />
+							<input type="text" id="name" name="name" />
 						</div>
 						<div>
 							<label for="url">Cat picture url:</label>
-							<input type="text" id="url" />
+							<input type="file" id="url" name="url" />
 						</div>
 
 						<button id="submit">Create 😼</button>

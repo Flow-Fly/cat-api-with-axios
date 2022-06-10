@@ -1,8 +1,17 @@
 import { qs, qsa } from "./utils.js"
-import * as cat from "./cats-handling.js"
-console.log("cat", cat)
+import {
+	getCatsButton,
+	createCatButton,
+	submitButton,
+	form,
+	getCats,
+	displayForm,
+	handleSubmit,
+	errorMessage,
+} from "./cats-handling.js"
+// console.log("cat", cat)
 
-cat.getCatsButton.addEventListener("click", cat.getCats)
-cat.createCatButton.addEventListener("click", cat.displayForm)
-cat.submitButton.addEventListener("click", cat.handleSubmit)
-cat.form.addEventListener("keydown", () => (cat.errorMessage.textContent = ""))
+getCatsButton.addEventListener("click", getCats)
+createCatButton.addEventListener("click", displayForm)
+submitButton.addEventListener("click", handleSubmit)
+form.addEventListener("keydown", () => (errorMessage.textContent = ""))

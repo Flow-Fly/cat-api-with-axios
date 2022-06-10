@@ -1,7 +1,7 @@
 const router = require("express").Router()
 
 router.get("/", (req, res, next) => {
-	res.sendFile("public/main.html", { root: require("../root") })
+	res.sendFile("views/main.html", { root: require("../root") })
 })
 
 router.use("/cats", require("./cats.routes.js"))

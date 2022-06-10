@@ -1,10 +1,11 @@
-const router = require("express").Router();
+const router = require("express").Router()
 
 router.get("/", (req, res, next) => {
-  res.sendFile('index')
-});
+	res.sendFile("public/main.html", { root: require("../root") })
+})
 
+router.use("/cats", require("./cats.routes.js"))
 
+router.use("/auth", require("./auth.routes.js"))
 
-router.use('/cats', require('./cats.routes.js'))
-module.exports = router;
+module.exports = router

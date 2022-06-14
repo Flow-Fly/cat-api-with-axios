@@ -1,6 +1,7 @@
 const router = require("express").Router()
 const Cat = require("../models/Cat.model")
 const uploader = require("../config/cloudinary.config")
+const isAuthenticated = require("../middlewares/isAuthenticated")
 /**
  * All the routes here are prefixed with /cats
  */
@@ -13,18 +14,23 @@ router.get("/", async (req, res, next) => {
 	}
 })
 
-router.post("/", uploader.single("url"), async (req, res, next) => {
-	try {
-		if (req.file) {
-			req.body.url = req.file.path
+router.post(
+	"/",
+	isAuthenticated,
+	uploader.single("url"),
+	async (req, res, next) => {
+		try {
+			if (req.file) {
+				req.body.url = req.file.path
+			}
+			const catToCreate = req.body
+			const catCreated = await Cat.create(catToCreate)
+			res.status(201).json(catCreated)
+		} catch (error) {
+			next(error)
 		}
-		const catToCreate = req.body
-		const catCreated = await Cat.create(catToCreate)
-		res.status(201).json(catCreated)
-	} catch (error) {
-		next(error)
 	}
-})
+)
 
 router.patch("/:id", async (req, res, next) => {
 	try {

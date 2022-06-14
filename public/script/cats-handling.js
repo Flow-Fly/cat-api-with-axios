@@ -1,5 +1,6 @@
 import { qs } from "./utils.js"
 const baseUrl = "http://localhost:5005/cats"
+import apiHandler from "./apiHandler.js"
 
 export const form = qs("form"),
 	catTemplate = qs("#cat-template"),
@@ -23,12 +24,21 @@ export async function getCats() {
 
 export async function handleSubmit(e) {
 	e.preventDefault()
+	// const token = localStorage.getItem("authToken")
+	// console.log(token)
+	// return
 	// const cat = {
 	// 	name: nameInput.value,
 	// 	url: urlInput.value,
 	// }
+	// const options = {
+	// 	headers: {
+	// 		authorization: `Bearer ${token}`,
+	// 	},
+	// }
+
 	const fd = new FormData()
-	// console.log(urlInput)
+	// console.loauth/loging(urlInput)
 	if (nameInput.value === "") {
 		errorMessage.textContent = "Please provide some values !"
 		return
@@ -38,12 +48,12 @@ export async function handleSubmit(e) {
 	fd.append("url", urlInput.files[0])
 
 	if (e.target.textContent.includes("Create")) {
-		const { data } = await axios.post(baseUrl, fd)
+		const { data } = await apiHandler.post(baseUrl, fd)
 		// console.log(data)
 		createTemplateAndAppend(data)
 	} else {
 		const id = e.target.dataset.id
-		await axios.patch(`${baseUrl}/${id}`, fd)
+		await apiHandler.patch(`${baseUrl}/${id}`, fd)
 		getCats()
 		e.target.textContent = "Create 😼"
 	}
@@ -65,7 +75,8 @@ export function editCat(e) {
 	const card = e.target.closest(".card")
 	const { id } = card.dataset
 	nameInput.value = qs("h3", card).textContent
-	urlInput.value = qs("img", card).src
+	//This line is no longer needed since we now upload files
+	// urlInput.value = qs("img", card).src
 	submitButton.textContent = "Edit 😼"
 	submitButton.dataset.id = id
 }

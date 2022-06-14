@@ -7,17 +7,39 @@
 button {
   unset:all
 } */
-h1 {
-	text-align: center;
-	margin-bottom: 2rem;
-}
 
 body {
 	background-color: rgb(215, 230, 250);
+	font-family: sans-serif;
+}
+
+main {
+	display: flex;
+	flex-direction: column;
+	gap: 2em;
 }
 
 .container {
 	display: flex;
+}
+
+nav.container {
+	height: 70px;
+	align-items: center;
+	padding-left: 2rem;
+	gap: 2rem;
+	background-color: black;
+	color: whitesmoke;
+}
+
+ul.container {
+	gap: 2rem;
+	list-style: none;
+}
+
+nav a {
+	text-decoration: none;
+	color: inherit;
 }
 
 .button.container {
@@ -29,6 +51,7 @@ button {
 	padding: 0.5rem 1rem;
 	border: 2px solid black;
 	background-color: whitesmoke;
+	font-family: inherit;
 }
 
 button:hover {
@@ -97,6 +120,7 @@ form {
 	flex-direction: column;
 	align-items: center;
 	gap: 1em;
+	position: fixed;
 }
 
 form input {

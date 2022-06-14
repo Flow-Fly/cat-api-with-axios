@@ -1,7 +1,7 @@
 const bcrypt = require("bcryptjs")
 const jsonwebtoken = require("jsonwebtoken")
 const User = require("../models/User.model")
-
+const root = require("../root")
 const router = require("express").Router()
 const saltRounds = 10
 
@@ -10,7 +10,7 @@ const saltRounds = 10
   Show a signup form.
   */
 router.get("/signup", async (req, res, next) => {
-	res.sendFile("views/auth/signup.html", { root: require("../root") })
+	res.sendFile("views/auth/signup.html", { root })
 })
 
 /*
@@ -71,7 +71,7 @@ router.post("/login", async (req, res, next) => {
 
 	const authToken = jsonwebtoken.sign(payload, process.env.TOKEN_SECRET, {
 		algorithm: "HS256",
-		expiresIn: "15s",
+		expiresIn: "15m",
 	})
 
 	res.status(200).json({ isLoggedIn: true, authToken })
